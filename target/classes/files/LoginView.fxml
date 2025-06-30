@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="loginPane" prefHeight="571.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.LoginView">
+   <children>
+      <ImageView fitHeight="571.0" fitWidth="903.0" pickOnBounds="true">
+         <image>
+            <Image url="@login.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="680.0" prefWidth="1204.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField maxWidth="200.0" promptText="Email" />
+            <TextField maxWidth="200.0" promptText="Password" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Log In" />
+                  <Button fx:id="signUpButton" onAction="#handleSignUpButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Sign Up" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="150.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

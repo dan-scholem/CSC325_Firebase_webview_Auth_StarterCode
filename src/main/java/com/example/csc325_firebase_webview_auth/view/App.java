@@ -36,9 +36,9 @@ public class App extends Application {
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
         pause.setOnFinished(event -> {
            try{
-               scene = new Scene(loadFXML("/files/AccessFBView.fxml"));
+               scene = new Scene(loadFXML("/files/LoginView.fxml"));
                primaryStage.setScene(scene);
-               primaryStage.setTitle("Access FB");
+               primaryStage.setTitle("Login");
            }catch(Exception e){
                e.printStackTrace();
            }
