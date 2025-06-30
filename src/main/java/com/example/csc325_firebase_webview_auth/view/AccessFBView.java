@@ -1,5 +1,6 @@
 package com.example.csc325_firebase_webview_auth.view;//package modelview;
 
+import com.example.csc325_firebase_webview_auth.model.FirestoreContext;
 import com.example.csc325_firebase_webview_auth.model.Person;
 import com.example.csc325_firebase_webview_auth.viewmodel.AccessDataViewModel;
 import com.google.api.core.ApiFuture;
@@ -16,11 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -153,6 +157,30 @@ public class AccessFBView {
 
         } catch (FirebaseAuthException ex) {
            // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+
+    public boolean registerUser(String email, String password) {
+        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                .setEmail(email)
+                .setEmailVerified(false)
+                .setPassword(password)
+                .setDisabled(false);
+
+        UserRecord userRecord;
+        try {
+            userRecord = App.fauth.createUser(request);
+            System.out.println("Successfully created new user: " + userRecord.getUid());
+            return true;
+
+        } catch (FirebaseAuthException ex) {
+            // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(ex.getMessage());
+            alert.showAndWait();
             return false;
         }
 
