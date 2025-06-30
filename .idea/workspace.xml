@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Login and Sign Up Views">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="User Authentication and Input Handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/SignUpView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/SignUpView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/SignUpView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/SignUpView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/files/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/LoginView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/SignUpView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/SignUpView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/files/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/LoginView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +172,7 @@
       <workItem from="1710690942533" duration="7228000" />
       <workItem from="1710732741753" duration="608000" />
       <workItem from="1710733353801" duration="5503000" />
-      <workItem from="1751250020907" duration="13026000" />
+      <workItem from="1751250020907" duration="16786000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -218,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751259036954</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="User Authentication and Input Handling">
+      <option name="closed" value="true" />
+      <created>1751263218251</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1751263218251</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +256,7 @@
     <MESSAGE value="GUI update" />
     <MESSAGE value="Splash Screen Completed" />
     <MESSAGE value="Login and Sign Up Views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login and Sign Up Views" />
+    <MESSAGE value="User Authentication and Input Handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="User Authentication and Input Handling" />
   </component>
 </project>

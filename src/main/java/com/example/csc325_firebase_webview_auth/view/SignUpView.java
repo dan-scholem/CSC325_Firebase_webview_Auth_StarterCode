@@ -36,6 +36,7 @@ public class SignUpView {
                     if(passwordMatches(password,confirmPassword)){
                         AccessFBView fbView = new AccessFBView();
                         fbView.registerUser(email,password);
+                        App.setRoot("/files/loginView.fxml");
                     }
                 }
             }
@@ -43,8 +44,6 @@ public class SignUpView {
             e.printStackTrace();
         }
     }
-
-
 
 
     @FXML
@@ -81,10 +80,6 @@ public class SignUpView {
             alert.showAndWait();
             return false;
         }
-    }
-
-    private static boolean isExistingAccount(String email) {
-        return true;
     }
 
     private static boolean passwordMatches(String password, String confirmPassword) {

@@ -14,11 +14,11 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="680.0" prefWidth="1204.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField maxWidth="200.0" promptText="Email" />
-            <TextField maxWidth="200.0" promptText="Password" />
+            <TextField fx:id="emailField" maxWidth="200.0" promptText="Email" />
+            <PasswordField fx:id="passwordField" maxWidth="200.0" promptText="Password" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Log In" />
+                  <Button fx:id="loginButton" onAction="#handleLoginButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Log In" />
                   <Button fx:id="signUpButton" onAction="#handleSignUpButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Sign Up" />
                </children>
             </HBox>
