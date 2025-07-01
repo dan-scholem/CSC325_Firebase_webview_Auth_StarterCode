@@ -46,6 +46,8 @@ public class AccessFBView {
     private TableColumn<Person,String> ageColumn;
     @FXML
     private MenuItem delete;
+    @FXML
+    private MenuItem close;
      private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
@@ -69,7 +71,16 @@ public class AccessFBView {
     @FXML
     private void deleteRecord(ActionEvent event) {
         deleteData();
-        readFirebase();
+    }
+
+    @FXML
+    private void closeWindow(ActionEvent event) {
+        logout();
+    }
+
+    @FXML
+    private void aboutWindow(ActionEvent event) {
+        about();
     }
 
         @FXML
@@ -98,12 +109,20 @@ public class AccessFBView {
             data.put("Age", Integer.parseInt(ageField.getText()));
             //asynchronously write data
             ApiFuture<WriteResult> result = docRef.set(data);
+            nameField.clear();
+            majorField.clear();
+            ageField.clear();
             Thread.sleep(10);
             readFirebase();
         }catch(InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+        } catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
             alert.showAndWait();
         }
 
@@ -168,8 +187,6 @@ public class AccessFBView {
                 .setEmail("user@example.com")
                 .setEmailVerified(false)
                 .setPassword("secretPassword")
-                .setPhoneNumber("+11234567890")
-                .setDisplayName("John Doe")
                 .setDisabled(false);
 
         UserRecord userRecord;
@@ -247,7 +264,37 @@ public class AccessFBView {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+            return false;
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a row");
+            alert.showAndWait();
             return false;
         }
+    }
+
+    public boolean logout() {
+        try{
+            App.setRoot("/files/LoginView.fxml");
+            return true;
+        }catch(IOException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+            return false;
+        }
+    }
+
+    public void about(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("About This Application");
+        alert.setContentText("Version 1.0\nDeveloped by Dan Scholem\n" +
+                "Read - Reads data from Firestore Database\nWrite - Writes data to Firestore Database\n" +
+                "Switch - Switch to HTML window");
+        alert.showAndWait();
     }
 }
