@@ -7,7 +7,7 @@
    <children>
       <ImageView fitHeight="571.0" fitWidth="894.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@banana.png" />
+            <Image url="@splash.png" />
          </image></ImageView>
    </children>
 </AnchorPane>
