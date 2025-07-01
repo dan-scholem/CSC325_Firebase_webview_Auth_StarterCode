@@ -100,30 +100,60 @@ public class AccessFBView {
 
     public void addData() {
 
-        try{
-            DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
+        if(nameField.getText().isEmpty() || majorField.getText().isEmpty() || ageField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Enter All Fields");
+            alert.showAndWait();
+        } else {
+            //asynchronously retrieve all documents
+            ApiFuture<QuerySnapshot> future =  App.fstore.collection("References").get();
+            // future.get() blocks on response
+            List<QueryDocumentSnapshot> documents;
+            try {
+                boolean dataExists = false;
+                Optional<ButtonType> confirm = Optional.empty();
+                documents = future.get().getDocuments();
+                for (QueryDocumentSnapshot document : documents) {
+                    if(document.getString("Name").equals(nameField.getText())) {
+                        dataExists = true;
+                        Alert alertConfirm = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertConfirm.setTitle("Add Confirmation");
+                        alertConfirm.setHeaderText("Data With Name " +  nameField.getText() + " Exists. Continue?");
+                        confirm = alertConfirm.showAndWait();
+                    }
+                }
 
-            Map<String, Object> data = new HashMap<>();
-            data.put("Name", nameField.getText());
-            data.put("Major", majorField.getText());
-            data.put("Age", Integer.parseInt(ageField.getText()));
-            //asynchronously write data
-            ApiFuture<WriteResult> result = docRef.set(data);
-            nameField.clear();
-            majorField.clear();
-            ageField.clear();
-            Thread.sleep(10);
-            readFirebase();
-        }catch(InterruptedException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(e.getMessage());
-            alert.showAndWait();
-        } catch (NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Invalid Input");
-            alert.showAndWait();
+                if((confirm.isPresent() && confirm.get() == ButtonType.OK) || !dataExists) {
+                    DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("Name", nameField.getText());
+                    data.put("Major", majorField.getText());
+                    data.put("Age", Integer.parseInt(ageField.getText()));
+                    //asynchronously write data
+                    ApiFuture<WriteResult> result = docRef.set(data);
+                    nameField.clear();
+                    majorField.clear();
+                    ageField.clear();
+                    Thread.sleep(20);
+                    readFirebase();
+                }
+            } catch (InterruptedException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(e.getMessage());
+                alert.showAndWait();
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Input");
+                alert.showAndWait();
+            } catch (ExecutionException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(e.getMessage());
+                alert.showAndWait();
+            }
         }
 
     }
@@ -248,7 +278,7 @@ public class AccessFBView {
                         break;
                     }
                 }
-                Thread.sleep(10);
+                Thread.sleep(20);
                 readFirebase();
                 return true;
             }else{

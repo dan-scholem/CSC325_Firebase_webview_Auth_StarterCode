@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Update Splash Screen Image">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Style and Exception Handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/AccessFBView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/SplashScreenView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/SplashScreenView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/AccessFBView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/AccessFBView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/SplashScreenView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/SplashScreenView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/files/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/files/banana.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +168,7 @@
       <workItem from="1710732741753" duration="608000" />
       <workItem from="1710733353801" duration="5503000" />
       <workItem from="1751250020907" duration="17139000" />
-      <workItem from="1751391798769" duration="12803000" />
+      <workItem from="1751391798769" duration="14859000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -264,7 +258,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751403552990</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update Splash Screen Image">
+      <option name="closed" value="true" />
+      <created>1751405515103</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1751405515103</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Style and Exception Handling">
+      <option name="closed" value="true" />
+      <created>1751405581853</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1751405581853</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +305,8 @@
     <MESSAGE value="Redirected Output to TableView" />
     <MESSAGE value="Menu-&gt;Edit-&gt;Delete Implemented" />
     <MESSAGE value="Update Splash Screen Image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Splash Screen Image" />
+    <MESSAGE value="Style and Exception Handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Style and Exception Handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
