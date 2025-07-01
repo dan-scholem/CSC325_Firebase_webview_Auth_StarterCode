@@ -100,6 +100,7 @@ public class AccessFBView {
 
     public void addData() {
 
+        //Check if all fields have values
         if(nameField.getText().isEmpty() || majorField.getText().isEmpty() || ageField.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
@@ -111,6 +112,8 @@ public class AccessFBView {
             // future.get() blocks on response
             List<QueryDocumentSnapshot> documents;
             try {
+                //Since this program is not pulling UID's to check uniqueness, it first checks if
+                //data exists based on Name
                 boolean dataExists = false;
                 Optional<ButtonType> confirm = Optional.empty();
                 documents = future.get().getDocuments();
@@ -123,7 +126,8 @@ public class AccessFBView {
                         confirm = alertConfirm.showAndWait();
                     }
                 }
-
+                //If data name does not exist, or user confirms that data exists and wants to
+                //continue anyway, adds data to database and updates table
                 if((confirm.isPresent() && confirm.get() == ButtonType.OK) || !dataExists) {
                     DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
                     Map<String, Object> data = new HashMap<>();
@@ -172,6 +176,7 @@ public class AccessFBView {
             if(documents.size()>0)
             {
                 System.out.println("Outing....");
+                //clear table of contents before reading data
                 outputTable.getItems().clear();
                 for (QueryDocumentSnapshot document : documents)
                 {
@@ -184,6 +189,7 @@ public class AccessFBView {
                             Integer.parseInt(document.getData().get("Age").toString()));
                     listOfUsers.add(person);
                 }
+                //map columns to data and populate table
                 nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
                 majorColumn.setCellValueFactory(new PropertyValueFactory<>("Major"));
                 ageColumn.setCellValueFactory(new PropertyValueFactory<>("Age"));
@@ -212,26 +218,34 @@ public class AccessFBView {
         }
     }
 
+    //only invoked if user selects File -> Register (generic user)
     public boolean registerUser() {
-        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setEmail("user@example.com")
-                .setEmailVerified(false)
-                .setPassword("secretPassword")
-                .setDisabled(false);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Generic User Registration Confirmation");
+        alert.setHeaderText("Create User user@example.com?");
+        Optional<ButtonType> confirm =  alert.showAndWait();
+        if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+            UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                    .setEmail("user@example.com")
+                    .setEmailVerified(false)
+                    .setPassword("secretPassword")
+                    .setDisabled(false);
 
-        UserRecord userRecord;
-        try {
-            userRecord = App.fauth.createUser(request);
-            System.out.println("Successfully created new user: " + userRecord.getUid());
-            return true;
+            UserRecord userRecord;
+            try {
+                userRecord = App.fauth.createUser(request);
+                System.out.println("Successfully created new user: " + userRecord.getUid());
+                return true;
 
-        } catch (FirebaseAuthException ex) {
-           // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            } catch (FirebaseAuthException ex) {
+                // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
         }
-
+        return false;
     }
 
+    //creates user from sign up page
     public boolean registerUser(String email, String password) {
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                 .setEmail(email)
@@ -266,11 +280,12 @@ public class AccessFBView {
         try{
             documents = future.get().getDocuments();
             Person selected = outputTable.getSelectionModel().getSelectedItem();
+            //confirm data deletion
             Alert alertConfirm = new Alert(Alert.AlertType.CONFIRMATION);
             alertConfirm.setTitle("Confirm Deletion");
             alertConfirm.setHeaderText("Are you sure you want to delete " +  selected.getName() + "?");
-            Optional<ButtonType> result = alertConfirm.showAndWait();
-            if(result.isPresent() && result.get() == ButtonType.OK){
+            Optional<ButtonType> confirm = alertConfirm.showAndWait();
+            if(confirm.isPresent() && confirm.get() == ButtonType.OK){
                 for(QueryDocumentSnapshot document : documents){
                     if(selected.getName().equals(document.getString("Name"))){
                         document.getReference().delete();
@@ -324,7 +339,8 @@ public class AccessFBView {
         alert.setHeaderText("About This Application");
         alert.setContentText("Version 1.0\nDeveloped by Dan Scholem\n" +
                 "Read - Reads data from Firestore Database\nWrite - Writes data to Firestore Database\n" +
-                "Switch - Switch to HTML window");
+                "Switch - Switch to HTML window\nEdit -> Delete: Deletes data from Firestore Database\n" +
+                "File -> Register: Registers user user@example.com");
         alert.showAndWait();
     }
 }

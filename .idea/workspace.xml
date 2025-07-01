@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Style and Exception Handling">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Input Handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/csc325_firebase_webview_auth/view/AccessFBView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/files/banana.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +166,7 @@
       <workItem from="1710732741753" duration="608000" />
       <workItem from="1710733353801" duration="5503000" />
       <workItem from="1751250020907" duration="17139000" />
-      <workItem from="1751391798769" duration="14859000" />
+      <workItem from="1751391798769" duration="16089000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -274,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751405581853</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Input Handling">
+      <option name="closed" value="true" />
+      <created>1751407451433</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1751407451433</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +312,8 @@
     <MESSAGE value="Menu-&gt;Edit-&gt;Delete Implemented" />
     <MESSAGE value="Update Splash Screen Image" />
     <MESSAGE value="Style and Exception Handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Style and Exception Handling" />
+    <MESSAGE value="Input Handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Input Handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
