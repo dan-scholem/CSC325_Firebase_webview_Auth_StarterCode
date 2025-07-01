@@ -1,3 +1,27 @@
-#loginPane{
-    -fx-background-image: url("login.png");
+.menu-bar{
+    -fx-background-color:#AD3D27;
+}
+
+#imagePane{
+    -fx-background-color:#AD8027;
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #999999;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+#formBox{
+    -fx-background-color: #61D415;
+}
+
+.button{
+    -fx-background-color:#AD8027;
+    -fx-background-radius: 10;
 }
