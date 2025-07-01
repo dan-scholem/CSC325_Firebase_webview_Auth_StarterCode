@@ -1,6 +1,5 @@
 package com.example.csc325_firebase_webview_auth.view;//package modelview;
 
-import com.example.csc325_firebase_webview_auth.model.FirestoreContext;
 import com.example.csc325_firebase_webview_auth.model.Person;
 import com.example.csc325_firebase_webview_auth.viewmodel.AccessDataViewModel;
 import com.google.api.core.ApiFuture;
@@ -12,10 +11,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import javafx.collections.FXCollections;
@@ -48,6 +44,8 @@ public class AccessFBView {
     private TableColumn<Person,String> majorColumn;
     @FXML
     private TableColumn<Person,String> ageColumn;
+    @FXML
+    private MenuItem delete;
      private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
@@ -68,6 +66,12 @@ public class AccessFBView {
         addData();
     }
 
+    @FXML
+    private void deleteRecord(ActionEvent event) {
+        deleteData();
+        readFirebase();
+    }
+
         @FXML
     private void readRecord(ActionEvent event) {
         readFirebase();
@@ -85,14 +89,24 @@ public class AccessFBView {
 
     public void addData() {
 
-        DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
+        try{
+            DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("Name", nameField.getText());
-        data.put("Major", majorField.getText());
-        data.put("Age", Integer.parseInt(ageField.getText()));
-        //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(data);
+            Map<String, Object> data = new HashMap<>();
+            data.put("Name", nameField.getText());
+            data.put("Major", majorField.getText());
+            data.put("Age", Integer.parseInt(ageField.getText()));
+            //asynchronously write data
+            ApiFuture<WriteResult> result = docRef.set(data);
+            Thread.sleep(10);
+            readFirebase();
+        }catch(InterruptedException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+        }
+
     }
 
         public boolean readFirebase()
@@ -112,9 +126,9 @@ public class AccessFBView {
                 outputTable.getItems().clear();
                 for (QueryDocumentSnapshot document : documents)
                 {
-                    outputField.setText(outputField.getText()+ document.getData().get("Name")+ " , Major: "+
-                            document.getData().get("Major")+ " , Age: "+
-                            document.getData().get("Age")+ " \n ");
+                    //outputField.setText(outputField.getText()+ document.getData().get("Name")+ " , Major: "+
+                    //        document.getData().get("Major")+ " , Age: "+
+                    //        document.getData().get("Age")+ " \n ");
                     System.out.println(document.getId() + " => " + document.getData().get("Name"));
                     person  = new Person(String.valueOf(document.getData().get("Name")),
                             document.getData().get("Major").toString(),
@@ -193,5 +207,47 @@ public class AccessFBView {
             return false;
         }
 
+    }
+
+
+    public boolean deleteData() {
+
+        //asynchronously retrieve all documents
+        ApiFuture<QuerySnapshot> future =  App.fstore.collection("References").get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents;
+        try{
+            documents = future.get().getDocuments();
+            Person selected = outputTable.getSelectionModel().getSelectedItem();
+            Alert alertConfirm = new Alert(Alert.AlertType.CONFIRMATION);
+            alertConfirm.setTitle("Confirm Deletion");
+            alertConfirm.setHeaderText("Are you sure you want to delete " +  selected.getName() + "?");
+            Optional<ButtonType> result = alertConfirm.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                for(QueryDocumentSnapshot document : documents){
+                    if(selected.getName().equals(document.getString("Name"))){
+                        document.getReference().delete();
+                        System.out.println("Successfully deleted document: " + selected.getName());
+                        break;
+                    }
+                }
+                Thread.sleep(10);
+                readFirebase();
+                return true;
+            }else{
+                return false;
+            }
+        } catch (ExecutionException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+            return false;
+        } catch (InterruptedException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
+            return false;
+        }
     }
 }
